@@ -1,0 +1,2 @@
+# LintellectApp
+React native prototype

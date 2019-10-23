@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 28 28">
+  <g id="Grupo_4540" data-name="Grupo 4540" transform="translate(-0.063)">
+    <path id="ic_crop_rotate_24px" d="M7.842,22.561a11.056,11.056,0,0,1-6.267-8.913H0A12.592,12.592,0,0,0,12.545,25.2c.241,0,.462-.021.693-.031l-4-4.01-1.4,1.407ZM12.65,0c-.241,0-.462.021-.693.042l4,4,1.4-1.4a11.025,11.025,0,0,1,6.267,8.9H25.2A12.592,12.592,0,0,0,12.65,0Z" transform="translate(1.58 1.814)"/>
+    <rect id="Rectángulo_2614" data-name="Rectángulo 2614" width="28" height="28" transform="translate(0.063)" fill="none"/>
+    <g id="Grupo_4577" data-name="Grupo 4577" transform="translate(7.474 7.412)">
+      <rect id="Rectángulo_2817" data-name="Rectángulo 2817" width="14" height="14" transform="translate(-0.412 -0.412)" fill="none"/>
+      <g id="ic_camera_alt_24px" transform="translate(1.672 1.541)">
+        <path id="Trazado_89" data-name="Trazado 89" d="M5.926,2,4.9,3.068H3.122A1.1,1.1,0,0,0,2,4.136v6.409a1.1,1.1,0,0,0,1.122,1.068h8.973a1.1,1.1,0,0,0,1.122-1.068V4.136a1.1,1.1,0,0,0-1.122-1.068H10.317L9.291,2Zm1.682,8.012A2.741,2.741,0,0,1,4.8,7.341a2.741,2.741,0,0,1,2.8-2.671,2.741,2.741,0,0,1,2.8,2.671A2.741,2.741,0,0,1,7.608,10.012Z" transform="translate(-2 -2)" fill="none" stroke="#000" stroke-width="1"/>
+      </g>
+    </g>
+  </g>
+</svg>

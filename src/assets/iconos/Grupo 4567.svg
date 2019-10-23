@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22">
+  <g id="Grupo_4567" data-name="Grupo 4567" transform="translate(-175 -778)">
+    <g id="Rectángulo_2632" data-name="Rectángulo 2632" transform="translate(175 778)" fill="none" stroke="#000" stroke-width="2">
+      <rect width="22" height="22" rx="6" stroke="none"/>
+      <rect x="1" y="1" width="20" height="20" rx="5" fill="none"/>
+    </g>
+    <path id="ic_close_24px" d="M7.434.749,6.685,0,3.717,2.968.749,0,0,.749,2.968,3.717,0,6.685l.749.749L3.717,4.466,6.685,7.434l.749-.749L4.466,3.717Z" transform="translate(186 783.744) rotate(45)"/>
+  </g>
+</svg>

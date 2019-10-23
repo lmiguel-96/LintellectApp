@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="20.57" viewBox="0 0 20 20.57">
+  <defs>
+    <clipPath id="clip-path">
+      <path id="Shape" d="M18.1,15.868,19.73,18.7a1.25,1.25,0,0,1-1.514,1.8l-3.942-1.45A10,10,0,1,1,18.1,15.868Z" fill="rgba(0,0,0,0.83)"/>
+    </clipPath>
+  </defs>
+  <g id="Grupo_4621" data-name="Grupo 4621" clip-path="url(#clip-path)">
+    <rect id="base" width="28.978" height="28.978" transform="translate(-3.344 -4.551)" fill="rgba(0,0,0,0.83)" opacity="0"/>
+    <g id="_Color" data-name="↳ 🎨Color" transform="translate(-3.344 -4.551)">
+      <rect id="_Color_background" data-name="↳ 🎨Color background" width="28.978" height="29.583" fill="rgba(0,0,0,0.83)"/>
+      <rect id="Color" width="28.978" height="29.583" fill="rgba(0,0,0,0.83)"/>
+    </g>
+  </g>
+</svg>

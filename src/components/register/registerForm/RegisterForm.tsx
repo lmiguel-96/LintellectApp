@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 interface IRegisterForm {
   username: string;
-  fullname: string;
+  fullName: string;
   email: string;
   password: string;
   confirmpassword: string;
@@ -15,7 +15,6 @@ const RegisterForm: React.FC<FormikProps<IRegisterForm>> = ({
   touched,
   errors,
   values,
-  handleChange,
   handleSubmit,
   isSubmitting,
   setFieldTouched,
@@ -48,11 +47,11 @@ const RegisterForm: React.FC<FormikProps<IRegisterForm>> = ({
       <Input
         errorStyle={{color: 'tomato'}}
         errorMessage={
-          errors.fullname && touched.fullname ? errors.fullname : null
+          errors.fullName && touched.fullName ? errors.fullName : null
         }
         onBlur={() => setFieldTouched('fullname')}
-        value={values.fullname}
-        onChangeText={value => setFieldValue('fullname', value)}
+        value={values.fullName}
+        onChangeText={value => setFieldValue('fullName', value)}
         keyboardType="default"
         placeholder="Nombre completo"
         inputStyle={{color: 'white'}}
@@ -120,7 +119,7 @@ const RegisterForm: React.FC<FormikProps<IRegisterForm>> = ({
         secureTextEntry={!visibility}
       />
       <Button
-        onPress={handleSubmit.bind(this)}
+        onPress={() => handleSubmit()}
         title="Continuar"
         type="solid"
         disabled={isSubmitting}

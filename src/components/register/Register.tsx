@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useState} from 'react';
 import {
   SafeAreaView,
   View,
@@ -6,6 +6,7 @@ import {
   StatusBar,
   ImageBackground,
   Dimensions,
+  Alert,
 } from 'react-native';
 import styled from 'styled-components/native';
 import {Formik} from 'formik';
@@ -15,6 +16,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 import {Button} from 'react-native-elements';
 import {withNavigation} from 'react-navigation';
 import {NavigationStackProp} from 'react-navigation-stack/lib/typescript/types';
+import ky from 'ky';
 import * as Yup from 'yup';
 
 const RegisterBackground = styled(ImageBackground)`
@@ -83,6 +85,14 @@ interface props {
   navigation: NavigationStackProp<{userId: string}>;
 }
 
+interface IRegisterForm {
+  username: string;
+  fullName: string;
+  email: string;
+  password: string;
+  confirmpassword: string;
+}
+
 const RegisterSchema = Yup.object().shape({
   username: Yup.string()
     .label('Nombre de usuario')
@@ -104,14 +114,37 @@ const RegisterSchema = Yup.object().shape({
     .label('Confirmar contraseña')
     .required('Campo requerido')
     .min(6, 'Como mínimo seis caracteres')
-    .test('passwords-match', 'Las contraseñas deben ser iguales', function(value) {
+    .test('passwords-match', 'Las contraseñas deben ser iguales', function(
+      value,
+    ) {
       return this.parent.password === value;
     }),
 });
 
+const API_URL = 'http://ec2-3-81-93-61.compute-1.amazonaws.com:8000/';
+const USUARIOS = 'api/usuario/';
+
 const Register: React.FC<props> | any = ({navigation}) => {
-  const handleLogin = () => {
+  const handleLoginScreen = () => {
     navigation.goBack();
+  };
+
+  const handleSignUpRequest = (formValues: IRegisterForm): void => {
+    ky.post(API_URL + USUARIOS, {json: {...formValues}})
+      .json()
+      .then(response => {
+        Alert.alert(
+          'Registro completado exitosamente',
+          `¡Bienvenido ${formValues.username}!`,
+          [{text: 'OK', onPress: () => handleLoginScreen()}],
+        );
+      })
+      .catch(error => {
+        Alert.alert(
+          'Error',
+          `Ha ocurrido un error, por favor verifica e intenta nuevamente`,
+        );
+      });
   };
 
   return (
@@ -124,7 +157,7 @@ const Register: React.FC<props> | any = ({navigation}) => {
             source={require('../../assets/img/login-background.jpg')}>
             <SectionGoBack>
               <Button
-                onPress={handleLogin.bind(this)}
+                onPress={handleLoginScreen.bind(this)}
                 title="Atrás"
                 titleStyle={{color: 'white', fontSize: 20}}
                 type="clear"
@@ -145,15 +178,14 @@ const Register: React.FC<props> | any = ({navigation}) => {
             </Section>
             <SectionInput>
               <Formik
-                onSubmit={values => console.log(values)}
+                onSubmit={formValues => handleSignUpRequest(formValues)}
                 initialValues={{
                   username: '',
-                  fullname: '',
+                  fullName: '',
                   email: '',
                   password: '',
                   confirmpassword: '',
                 }}
-                validationSchema={RegisterSchema}
                 validateOnChange
                 component={RegisterForm}
               />

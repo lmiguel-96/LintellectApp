@@ -31,7 +31,7 @@ const LoginForm: React.FC<props> | any = ({
     setVisibibility(visibility ? false : true);
   };
 
-  const handleSignUp = (): void => {
+  const handleSignUpScreen = (): void => {
     navigation.push('Register');
   };
 
@@ -89,7 +89,7 @@ const LoginForm: React.FC<props> | any = ({
         titleStyle={{color: 'white'}}
       />
       <Button
-        onPress={handleSignUp.bind(this)}
+        onPress={handleSignUpScreen.bind(this)}
         title="Registrarse"
         type="solid"
         disabled={isSubmitting}

@@ -1,8 +1,9 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useState} from 'react';
 import {Input, Button} from 'react-native-elements';
 import {FormikProps} from 'formik';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import { withNavigation } from 'react-navigation'
+import {withNavigation} from 'react-navigation';
+import {NavigationStackProp} from 'react-navigation-stack/lib/typescript/types';
 
 interface ILoginForm {
   email: string;
@@ -10,21 +11,27 @@ interface ILoginForm {
 }
 
 interface props extends FormikProps<ILoginForm> {
-  navigation: any;
-};
+  navigation: NavigationStackProp<{userId: string}>;
+}
 
-const LoginForm: React.FC<props> = ({
+const LoginForm: React.FC<props> | any = ({
   values,
   handleChange,
   handleSubmit,
   isSubmitting,
   setFieldTouched,
   setFieldValue,
-  navigation
+  navigation,
 }) => {
-  const handleSignUp = () => {
+  const [visibility, setVisibibility] = useState(false);
+
+  const handleToggleVisibility = (): void => {
+    setVisibibility(visibility ? false : true);
+  };
+
+  const handleSignUp = (): void => {
     navigation.push('Register');
-  }
+  };
 
   return (
     <Fragment>
@@ -47,8 +54,15 @@ const LoginForm: React.FC<props> = ({
         placeholderTextColor="white"
         editable={!isSubmitting}
         textContentType="password"
-        rightIcon={<Icon name="visibility-off" size={24} color="white" />}
-        secureTextEntry
+        rightIcon={
+          <Icon
+            name={visibility ? 'visibility-off' : 'visibility'}
+            size={24}
+            color="white"
+            onPress={handleToggleVisibility.bind(this)}
+          />
+        }
+        secureTextEntry={visibility}
       />
       <Button
         onPress={handleSubmit.bind(this)}

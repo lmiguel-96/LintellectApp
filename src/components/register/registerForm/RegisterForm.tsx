@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react';
+import React, {Fragment, useState} from 'react';
 import {Input, Button} from 'react-native-elements';
 import {FormikProps} from 'formik';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -19,6 +19,12 @@ const RegisterForm: React.FC<FormikProps<IRegisterForm>> = ({
   setFieldTouched,
   setFieldValue,
 }) => {
+  const [visibility, setVisibibility] = useState(false);
+
+  const handleToggleVisibility = (): void => {
+    setVisibibility(visibility ? false : true);
+  };
+
   return (
     <Fragment>
       <Input
@@ -63,8 +69,15 @@ const RegisterForm: React.FC<FormikProps<IRegisterForm>> = ({
         placeholderTextColor="white"
         editable={!isSubmitting}
         textContentType="password"
-				rightIcon={<Icon name="visibility-off" size={24} color="white" />}
-				secureTextEntry
+        rightIcon={
+          <Icon
+            name={visibility ? 'visibility-off' : 'visibility'}
+            size={24}
+            color="white"
+            onPress={handleToggleVisibility.bind(this)}
+          />
+        }
+        secureTextEntry={visibility}
       />
       <Input
         value={values.confirmpassword}
@@ -74,21 +87,28 @@ const RegisterForm: React.FC<FormikProps<IRegisterForm>> = ({
         placeholderTextColor="white"
         editable={!isSubmitting}
         textContentType="password"
-				rightIcon={<Icon name="visibility-off" size={24} color="white" />}
-				secureTextEntry
+        rightIcon={
+          <Icon
+            name={visibility ? 'visibility-off' : 'visibility'}
+            size={24}
+            color="white"
+            onPress={handleToggleVisibility.bind(this)}
+          />
+        }
+        secureTextEntry={visibility}
       />
       <Button
         onPress={handleSubmit.bind(this)}
         title="Continuar"
         type="solid"
         disabled={isSubmitting}
-				loading={isSubmitting}
-				disabledStyle={{
-					backgroundColor: '#4ad183',		
-				}}
-				loadingStyle={{
-					backgroundColor: '#4ad183',		
-				}}
+        loading={isSubmitting}
+        disabledStyle={{
+          backgroundColor: '#4ad183',
+        }}
+        loadingStyle={{
+          backgroundColor: '#4ad183',
+        }}
         buttonStyle={{
           borderRadius: 13,
           backgroundColor: '#4ad183',

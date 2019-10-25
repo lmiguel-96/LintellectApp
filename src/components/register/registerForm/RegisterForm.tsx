@@ -12,6 +12,8 @@ interface IRegisterForm {
 }
 
 const RegisterForm: React.FC<FormikProps<IRegisterForm>> = ({
+  touched,
+  errors,
   values,
   handleChange,
   handleSubmit,
@@ -28,6 +30,10 @@ const RegisterForm: React.FC<FormikProps<IRegisterForm>> = ({
   return (
     <Fragment>
       <Input
+        errorStyle={{color: 'tomato'}}
+        errorMessage={
+          errors.username && touched.username ? errors.username : null
+        }
         onBlur={() => setFieldTouched('username')}
         value={values.username}
         onChangeText={value => setFieldValue('username', value)}
@@ -40,6 +46,10 @@ const RegisterForm: React.FC<FormikProps<IRegisterForm>> = ({
         rightIcon={<Icon name="info" size={24} color="white" />}
       />
       <Input
+        errorStyle={{color: 'tomato'}}
+        errorMessage={
+          errors.fullname && touched.fullname ? errors.fullname : null
+        }
         onBlur={() => setFieldTouched('fullname')}
         value={values.fullname}
         onChangeText={value => setFieldValue('fullname', value)}
@@ -51,6 +61,8 @@ const RegisterForm: React.FC<FormikProps<IRegisterForm>> = ({
         textContentType="name"
       />
       <Input
+        errorStyle={{color: 'tomato'}}
+        errorMessage={errors.email && touched.email ? errors.email : null}
         onBlur={() => setFieldTouched('email')}
         value={values.email}
         onChangeText={value => setFieldValue('email', value)}
@@ -62,6 +74,11 @@ const RegisterForm: React.FC<FormikProps<IRegisterForm>> = ({
         textContentType="emailAddress"
       />
       <Input
+        errorStyle={{color: 'tomato'}}
+        errorMessage={
+          errors.password && touched.password ? errors.password : null
+        }
+        onBlur={() => setFieldTouched('password')}
         value={values.password}
         onChangeText={value => setFieldValue('password', value)}
         placeholder="Contraseña"
@@ -71,15 +88,20 @@ const RegisterForm: React.FC<FormikProps<IRegisterForm>> = ({
         textContentType="password"
         rightIcon={
           <Icon
-            name={visibility ? 'visibility-off' : 'visibility'}
+            name={visibility ? 'visibility' : 'visibility-off'}
             size={24}
             color="white"
             onPress={handleToggleVisibility.bind(this)}
           />
         }
-        secureTextEntry={visibility}
+        secureTextEntry={!visibility}
       />
       <Input
+        errorStyle={{color: 'tomato'}}
+        errorMessage={
+          errors.confirmpassword && touched.confirmpassword ? errors.confirmpassword : null
+        }
+        onBlur={() => setFieldTouched('confirmpassword')}
         value={values.confirmpassword}
         onChangeText={value => setFieldValue('confirmpassword', value)}
         placeholder="Confirmar contraseña"
@@ -89,13 +111,13 @@ const RegisterForm: React.FC<FormikProps<IRegisterForm>> = ({
         textContentType="password"
         rightIcon={
           <Icon
-            name={visibility ? 'visibility-off' : 'visibility'}
+            name={visibility ? 'visibility' : 'visibility-off'}
             size={24}
             color="white"
             onPress={handleToggleVisibility.bind(this)}
           />
         }
-        secureTextEntry={visibility}
+        secureTextEntry={!visibility}
       />
       <Button
         onPress={handleSubmit.bind(this)}

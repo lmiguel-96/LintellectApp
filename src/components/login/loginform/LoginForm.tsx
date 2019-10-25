@@ -15,6 +15,8 @@ interface props extends FormikProps<ILoginForm> {
 }
 
 const LoginForm: React.FC<props> | any = ({
+  errors,
+  touched,
   values,
   handleChange,
   handleSubmit,
@@ -36,6 +38,10 @@ const LoginForm: React.FC<props> | any = ({
   return (
     <Fragment>
       <Input
+        errorStyle={{color: 'tomato'}}
+        errorMessage={
+          errors.email && touched.email ? errors.email : null
+        }
         onBlur={() => setFieldTouched('email')}
         value={values.email}
         onChangeText={value => setFieldValue('email', value)}
@@ -47,6 +53,11 @@ const LoginForm: React.FC<props> | any = ({
         textContentType="emailAddress"
       />
       <Input
+        errorStyle={{color: 'tomato'}}
+        errorMessage={
+          errors.password && touched.password ? errors.password : null
+        }
+        onBlur={() => setFieldTouched('email')}
         value={values.password}
         onChangeText={value => setFieldValue('password', value)}
         placeholder="Contraseña"
@@ -56,13 +67,13 @@ const LoginForm: React.FC<props> | any = ({
         textContentType="password"
         rightIcon={
           <Icon
-            name={visibility ? 'visibility-off' : 'visibility'}
+            name={visibility ? 'visibility' : 'visibility-off'}
             size={24}
             color="white"
             onPress={handleToggleVisibility.bind(this)}
           />
         }
-        secureTextEntry={visibility}
+        secureTextEntry={!visibility}
       />
       <Button
         onPress={handleSubmit.bind(this)}

@@ -12,6 +12,7 @@ import {Formik} from 'formik';
 import styled from 'styled-components/native';
 import LoginForm from './loginform/LoginForm';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import * as Yup from 'yup';
 
 const LoginBackground = styled(ImageBackground)`
   width: ${Dimensions.get('window').width};
@@ -63,6 +64,15 @@ const GreenText = styled(Text)`
   color: #4ad183;
 `;
 
+const LoginSchema = Yup.object().shape({
+  email: Yup.string()
+    .required('Ingrese su correo electrónico')
+    .email('Correo electrónico no válido'),
+  password: Yup.string()
+    .required('Ingrese su contraseña'),
+});
+
+
 const Login: React.FC = () => {
   return (
     <Fragment>
@@ -88,6 +98,7 @@ const Login: React.FC = () => {
               <Formik
                 onSubmit={values => console.log(values)}
                 initialValues={{email: '', password: ''}}
+                validationSchema={LoginSchema}
                 validateOnChange
                 component={LoginForm}
               />

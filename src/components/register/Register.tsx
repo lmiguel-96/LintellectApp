@@ -14,7 +14,8 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {Button} from 'react-native-elements';
 import {withNavigation} from 'react-navigation';
-import { NavigationStackProp } from 'react-navigation-stack/lib/typescript/types';
+import {NavigationStackProp} from 'react-navigation-stack/lib/typescript/types';
+import * as Yup from 'yup';
 
 const RegisterBackground = styled(ImageBackground)`
   width: ${Dimensions.get('window').width};
@@ -23,7 +24,7 @@ const RegisterBackground = styled(ImageBackground)`
 `;
 
 const Section = styled(View)`
-  margin-top: 150px;
+  margin-top: 60px;
   padding-horizontal: 40px;
 `;
 
@@ -79,8 +80,34 @@ const SectionGoBack = styled(View)`
 `;
 
 interface props {
-  navigation: NavigationStackProp<{ userId: string }>;
+  navigation: NavigationStackProp<{userId: string}>;
 }
+
+const RegisterSchema = Yup.object().shape({
+  username: Yup.string()
+    .label('Nombre de usuario')
+    .required('Campo requerido')
+    .min(2, 'Como mínimo dos caracteres'),
+  fullname: Yup.string()
+    .label('Nombre completo')
+    .required('Campo requerido')
+    .min(6, 'Como mínimo seis caracteres'),
+  email: Yup.string()
+    .label('Correo electrónico')
+    .email('Ingre un email válido')
+    .required('Campo requerido'),
+  password: Yup.string()
+    .label('Contraseña')
+    .required('Campo requerido')
+    .min(6, 'Como mínimo seis caracteres'),
+  confirmpassword: Yup.string()
+    .label('Confirmar contraseña')
+    .required('Campo requerido')
+    .min(6, 'Como mínimo seis caracteres')
+    .test('passwords-match', 'Las contraseñas deben ser iguales', function(value) {
+      return this.parent.password === value;
+    }),
+});
 
 const Register: React.FC<props> | any = ({navigation}) => {
   const handleLogin = () => {
@@ -126,6 +153,7 @@ const Register: React.FC<props> | any = ({navigation}) => {
                   password: '',
                   confirmpassword: '',
                 }}
+                validationSchema={RegisterSchema}
                 validateOnChange
                 component={RegisterForm}
               />
